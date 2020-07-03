@@ -71,50 +71,6 @@ exports.changePassword = async (req, res, next) => {
 }
 
 
-
-exports.delUser = async (req, res, next) => {
-    try {
-        let params = req.body;
-
-        let reqUser = await User.findOne({email: params.email});
-        if (!reqUser) throw new customError.NotFoundError("user with email not found");
-
-        await reqUser.deleteOne();
-
-        res.json({
-            statusCode: 203,
-            statusName: httpStatus.getName(203),
-            message: "Deleted User Successfully!"
-        })
-    } catch(e) {
-        next(e);
-    }
-}
-
-exports.getUsers = async (req, res, next) => {
-    try {
-        let reqUsers = await User.find({}, 'email password name');
-        
-        let users = [];
-        for (let i = 0; i < reqUsers.length; i++) {
-            users.push({
-                email: reqUsers[i].email,
-                password: reqUsers[i].password,
-                name: reqUsers[i].name
-            });
-        }
-
-        res.json({
-            statusCode: 200,
-            statusName: httpStatus.getName(200),
-            message: "Fetched User(s) Successfully!",
-            users: users
-        })
-    } catch(e) {
-        next(e);
-    }
-}
-
 exports.defaultUser = async () => {
     let user = await User.findOne({});
 

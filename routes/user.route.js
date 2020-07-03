@@ -30,20 +30,6 @@ router.post(
     userController.addUser
 );
 
-// API 1.4 Delete User:
-router.post(
-    '/del',
-    validate(userValidation.delUser, { keyByField: true }),
-    verifyUser,
-    userController.delUser
-);
-
-// API 1.5 Get Users:
-router.post(
-    '/get',
-    verifyUser,
-    userController.getUsers
-);
 router.post(
     '/dashboard',
     verifyUser
