@@ -1,0 +1,78 @@
+
+<html>
+
+    <head>
+        <title>CodeShode-Login</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/sty.css">
+        <link rel="stylesheet" href="css/styles.css">
+
+        <style type="text/css">
+          #bg-img{ 
+            padding-top: 100px;
+              }
+      </style>
+
+    </head>
+    
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+        <div class="container">
+          <a class="navbar-brand" href="index.html">CodeShode</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="signup.html" id="loginBtn"  value="Sign In">REGISTER</a>
+                  
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="login.html" id="loginBtn"  value="Log In">LOGIN</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+
+
+        <div class="container-fluid">
+            <div class="row no-gutter">
+              <div class="d-none d-md-flex col-md-4 col-lg-6 bg-image"><img id="bg-img" src="images/back1.jpg"  class="img-fluid animated" alt=""></div>
+              <div class="col-md-8 col-lg-6">
+                <div class="login d-flex align-items-center py-5">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-md-9 col-lg-8 mx-auto">
+                        <h3 class="login-heading mb-4">LOGIN</h3>
+                        <form method="POST" id="admin-form">
+                          <div class="form-label-group">
+                            <input type="email" id="email" name="email" class="form-control" placeholder="Email address" required autofocus>
+                            <label for="email">Email address</label>
+                          </div>
+          
+                          <div class="form-label-group">
+                            <input type="password" class="form-control" id="password" name="password" placeholder=" ">
+                            <label for="password">Password</label>
+                          </div>
+          
+                          
+                          <script type="text/javascript" src="api.js"></script>
+                          <input class="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2" type="button" id="loginBtn" onclick="login()" value="Log In">
+                          
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+
+
+    </body>
+    
+    </html>

@@ -1,0 +1,105 @@
+#!/usr/bin/env node
+/**
+ * Module dependencies.
+ */
+
+
+// this code is part of express-generator boilerplate.. Inside of your package.json file, the line "script":{"start": "node ./bin/www"} tells node where to go
+// to start your application. The code includes error checking and validates that the server is listening on a normalized port and running. 
+// Error-handling is absolutely essential and should not be removed if you intend to push your project into a live environment.
+
+var app = require('../app');
+var debug = require('debug')('men-crud:server');//returns the decoded version of server module of men-crud
+var http = require('http');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');//This function is a safety railguard to make sure the port provided is number 
+//if not a number then a string and if anything else set it to false.
+//In many environments (e.g. Heroku), and as a convention, you can set the environment variable PORT to tell your web server what port to listen on.
+//So process. env. PORT || 3000 means: whatever is in the environment variable PORT, or 3000 if there's nothing there.
+
+app.set('port', port);//sets app's port
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);//creates an event listener that is bound to the onError method. 
+//When an error is detected, the onError() method is called and executed, throwing the error.
+
+
+
+server.on('listening', onListening);// creates an event listener that is bound to the onListening method.
+// When the server is actually listening on a normalized port the onListening() method is called and executed.
+
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+//Normalizing a port means that the application will verify that the port value is both a real numeric value, and that value is greater than zero.
+// This is an additional layer of validation to ensure that your application has the potential to listen on the port specified
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
